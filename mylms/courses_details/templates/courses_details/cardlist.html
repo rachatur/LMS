@@ -1,0 +1,30 @@
+.card {
+    border: none; /* Remove default border */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
+    opacity: 0.9; /* Slightly transparent */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.card-img-top {
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+<!-- Card for Course Details -->
+<div class="col-md-3">
+    <div class="card">
+        <img
+            src="{% static 'assets/machineCard.png' %}"
+            class="card-img-top"
+            alt="Machine Learning Course" style='padding: 2px;'
+        />
+        <div class="card-body">
+            <h5 class="card-title">Machine Learning</h5>
+            <p class="card-text">Dive into the world of Machine Learning and discover how to leverage algorithms and data to make informed decisions. This course covers everything from basic concepts to advanced techniques.</p>
+            <a href="#" class="btn btn-primary">View Course</a>
+        </div>
+    </div>
+</div>

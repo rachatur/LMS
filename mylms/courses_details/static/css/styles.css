@@ -1,0 +1,63 @@
+styles.css
+
+/* Basic Reset */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Flexbox setup for the body */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body takes full viewport height */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: white !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    /* background-color: #3d71a9 !important; Custom navbar background color */
+}
+
+.navbar-brand img {
+    height: 50px;
+    /* Adjust logo height */
+}
+
+.nav-link {
+    color: #0a0a0a; /* White text for nav links */
+}
+
+.nav-link:hover {
+    color: #0a0a0a; /* Slightly lighter text on hover */
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    background-color: #343a40; /* Dark background for dropdown */
+}
+
+.dropdown-item {
+    color: #0a0a0a; /* White text for dropdown items */
+}
+
+.dropdown-item:hover {
+    background-color: #495057; /* Darker background on hover */
+}
+
+/* Main Content Styles */
+.content {
+    flex: 1; /* Allow content to grow and push footer down */
+    padding: 20px; /* Padding for the main content */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40; /* Dark background for footer */
+    color: white; /* White text for footer */
+    text-align: center; /* Centered text */
+    padding: 10px 0; /* Padding for footer */
+    width: 100%; /* Full width */
+}

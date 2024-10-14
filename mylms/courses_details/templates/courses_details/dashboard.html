@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Overview</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa; /* Light background */
+      }
+
+      .card {
+        border: none; /* Remove border */
+        border-radius: 10px; /* Rounded corners */
+        background-color: white; /* White background for cards */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+      }
+
+      .card-title {
+        font-size: 1rem; /* Larger font for numbers */
+        font-weight: bold;
+      }
+
+      .card-text {
+        font-size: 1.2rem; /* Slightly larger font for descriptions */
+        color: #6c757d; /* Grey color for text */
+      }
+
+      .container {
+        margin-top: 30px; /* Space above the container */
+      }
+
+      .action-icon {
+        font-size: 1rem; /* Icon size */
+        color: #6c757d; /* Grey color for icons */
+      }
+
+      .row > .col-md-3 {
+        margin-bottom: 15px; /* Space between columns */
+      }
+    </style>
+  </head>
+  <body>
+  <!-- Navbar -->
+    {% include 'courses_details/header.html' %}
+    <br/>
+  <div class="content">
+  {% block content %}
+    <!-- section-1  -->
+    <div class="container" style="margin-top: 5rem">
+      <div class="row">
+        <!-- Overview Section (left column inside a card) -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="my-1">Overview</h3>
+              <div class="row">
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h5 class="card-title">1</h5>
+                      <p class="card-title">Active users</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h5 class="card-title">0</h5>
+                      <p class="card-title">Assigned courses</p>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h5 class="card-title">0h 0m</h5>
+                      <p class="card-title">Training time</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h5 class="card-title">0.0%</h5>
+                      <p class="card-title">Completion rate</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Section (right column inside a card) -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="my-1">Quick Actions</h3>
+              <div class="row">
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-user action-icon"></i>
+                      <h5 class="card-title">Add user</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-book action-icon"></i>
+                      <h5 class="card-title">Add course</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-users action-icon"></i>
+                      <h5 class="card-title">Add group</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-folder action-icon"></i>
+                      <h5 class="card-title">Add category</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-globe action-icon"></i>
+                      <h5 class="card-title">Portal</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <i class="fas fa-file-import action-icon"></i>
+                      <h5 class="card-title">Import-Export</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- section-2  -->
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Users section on the left -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="my-1">Users</h3>
+              <button
+                aria-label="Users"
+                class="btn btn-link p-0"
+                style="float: right; margin-top: -2rem"
+              >
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32"
+                >
+                  <path
+                    d="M17.502 8.75c0 .416.334.75.75.75h3.191l-6.973 6.969a.75.75 0 001.06 1.06l6.97-6.97v3.191c0 .416.334.75.75.75s.75-.334.75-.75v-5a.748.748 0 00-.75-.75h-4.998a.748.748 0 00-.75.75zM10.25 9A2.249 2.249 0 008 11.25v10.5A2.249 2.249 0 0010.25 24h10.503a2.249 2.249 0 002.25-2.25v-4a.748.748 0 00-.75-.75.748.748 0 00-.75.75v4c0 .416-.335.75-.75.75H10.25a.748.748 0 01-.75-.75v-10.5c0-.416.335-.75.75-.75h4.001c.416 0 .75-.334.75-.75a.748.748 0 00-.75-.75h-4z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- Users statistics -->
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h1 class="card-title">1</h1>
+                      <p class="card-title">Users</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h1 class="card-title">0</h1>
+                      <p class="card-title">Learners</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h1 class="card-title">0</h1>
+                      <p class="card-title">Instructors</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card text-center" style="background-color: #c0dde6;">
+                    <div class="card-body">
+                      <h1 class="card-title">1</h1>
+                      <p class="card-title">Admins</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline section on the right -->
+        <div class="col-md-6">
+          <div class="card">
+            {% comment %} style="background-color: #c8d3e0" {% endcomment %}
+            <div class="row">
+              <div class="card-body">
+                <h3 class="my-1">Timeline</h3>
+              </div>
+              <button
+                aria-label="Timeline"
+                class="btn btn-link p-0"
+                style="margin-top: -4rem;"
+              >
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="32" style="float: right; margin-right: 1.7rem;"
+                >
+                  <path
+                    d="M17.502 8.75c0 .416.334.75.75.75h3.191l-6.973 6.969a.75.75 0 001.06 1.06l6.97-6.97v3.191c0 .416.334.75.75.75s.75-.334.75-.75v-5a.748.748 0 00-.75-.75h-4.998a.748.748 0 00-.75.75zM10.25 9A2.249 2.249 0 008 11.25v10.5A2.249 2.249 0 0010.25 24h10.503a2.249 2.249 0 002.25-2.25v-4a.748.748 0 00-.75-.75.748.748 0 00-.75.75v4c0 .416-.335.75-.75.75H10.25a.748.748 0 01-.75-.75v-10.5c0-.416.335-.75.75-.75h4.001c.416 0 .75-.334.75-.75a.748.748 0 00-.75-.75h-4z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Scrollable Timeline -->
+            <div
+              class="scroll-container"
+              style="max-height: 400px; overflow-y: auto"
+            >
+              <ul class="widget-container" tabindex="0">
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in</span
+                  >
+                  <span class="creation-date">25 minutes ago</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in</span
+                  >
+                  <span class="creation-date">7 hours ago</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in
+                    <i>(4 times)</i></span
+                  >
+                  <span class="creation-date">19 hours ago</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in</span
+                  >
+                  <span class="creation-date">04/10/2024</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in</span
+                  >
+                  <span class="creation-date">26/09/2024</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> signed in</span
+                  >
+                  <span class="creation-date">25/09/2024</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    >User <strong><i>S. Te</i></strong
+                    >'s progress for the course
+                    <strong><i>Python course</i></strong> has been reset by
+                    <strong><i>You</i></strong></span
+                  >
+                  <span class="creation-date">25/09/2024</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> added yourself to the course
+                    <strong><i>Python course</i></strong> via
+                    <strong><i>reassignment</i></strong></span
+                  >
+                  <span class="creation-date">25/09/2024</span>
+                </li>
+                <li class="event-list danger">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> removed yourself from the
+                    course <strong><i>Python course</i></strong></span
+                  >
+                  <span class="creation-date">25/09/2024</span>
+                </li>
+                <li class="event-list primary">
+                  <span class="event-message"
+                    ><strong><i>You</i></strong> updated the course
+                    <strong><i>Python course</i></strong></span
+                  >
+                  <span class="creation-date">25/09/2024</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- section-3  -->
+    {% include "courses_details/graph.html" %}
+{% endblock %}
+  </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Quick Actions</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa; /* Light background */
+      }
+
+      .card {
+        border: none; /* Remove border */
+        border-radius: 10px; /* Rounded corners */
+        background-color: white; /* White background for cards */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+      }
+
+      .card-title {
+        font-size: 1.5rem; /* Font size for the title */
+        font-weight: bold; /* Bold font */
+      }
+
+      .card-text {
+        font-size: 1rem; /* Font size for text */
+        color: #6c757d; /* Grey color for text */
+      }
+
+      .container {
+        margin-top: 30px; /* Space above the container */
+      }
+
+      .action-icon {
+        font-size: 40px; /* Icon size */
+        margin-bottom: 10px; /* Space below icon */
+        color: #6c757d; /* Icon color */
+      }
+
+      h1 {
+        font-size: 2rem; /* Header size */
+        margin-bottom: 20px; /* Space below header */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Overview Section -->
+      <h1 class="my-4">Overview</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">1</h5>
+                  <p class="card-text">Active users</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">0</h5>
+                  <p class="card-text">Assigned courses</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">0h 0m</h5>
+                  <p class="card-text">Training time</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">0.0%</h5>
+                  <p class="card-text">Completion rate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Section -->
+      <h1 class="my-4">Quick Actions</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-user action-icon"></i>
+                  <h5 class="card-title">Add user</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-book action-icon"></i>
+                  <h5 class="card-title">Add course</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-users action-icon"></i>
+                  <h5 class="card-title">Add group</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-folder action-icon"></i>
+                  <h5 class="card-title">Add category</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-globe action-icon"></i>
+                  <h5 class="card-title">Portal</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center">
+                <div class="card-body">
+                  <i class="fas fa-file-import action-icon"></i>
+                  <h5 class="card-title">Import-Export</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  </body>
+</html>
+{% endcomment %}

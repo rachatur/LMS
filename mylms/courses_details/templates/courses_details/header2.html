@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar with Navbar</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      /* Navbar adjustment */
+      .navbar {
+        z-index: 1030;
+        background-color: #fff; /* Navbar background color */
+      }
+
+      /* Content styling */
+      .content {
+        margin-left: 0; /* Initially no left margin */
+        padding: 20px;
+        transition: margin-left 0.3s ease; /* Smooth transition */
+      }
+
+      /* Dropdown Menu */
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+        list-style: none;
+        margin: 0;
+        border-radius: 4px;
+      }
+
+      .dropdown-menu .dropdown-item {
+        text-decoration: none;
+        color: #333;
+        padding: 0.5rem 1rem;
+      }
+
+      .dropdown-menu .dropdown-item:hover {
+        background-color: #f1f1f1;
+      }
+
+      /* Show Dropdown on Hover */
+      .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark fixed-top">
+      <div class="container-fluid d-flex align-items-center">
+        <!-- Logo on the left -->
+        <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">
+          <img
+            src="{% static 'assets/logo.png' %}"
+            alt="My Logo"
+            style="height: 40px;"
+          />
+        </a>
+
+        <!-- Profile Section aligned to the right -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="profileDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user"></i>
+            <span class="profile-name">My Profile</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="profileDropdown">
+            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+<!--            <a class="dropdown-item" href="{% url 'login' %}">Login</a>-->
+          </div>
+        </li>
+      </div>
+    </nav>
+
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

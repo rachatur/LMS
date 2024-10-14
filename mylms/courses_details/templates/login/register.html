@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <section class="flex bg-gray-200 min-h-screen my-3">
+        <div class="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
+            <!-- Left section: form -->
+            <div class="md:w-1/2 px-5">
+                <h2 class="text-2xl font-bold text-[#002D74]">Register</h2>
+                <p class="text-sm mt-4 text-[#002D74]">Create your account by filling out the form below</p>
+                <form class="mt-6" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <!-- Username Field -->
+                    <div>
+                        <label class="block text-gray-700">Username</label>
+                        <input type="text" name="username" placeholder="Enter Username" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700">Email Address</label>
+                        <input type="email" name="email" placeholder="Enter Email Address" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                    </div>
+
+                    <!-- Password1 Field -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700">Password</label>
+                        <input type="password" name="password1" placeholder="Enter Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                    </div>
+
+                    <!-- Password2 Field -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700">Confirm Password</label>
+                        <input type="password" name="password2" placeholder="Confirm Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                    </div>
+
+                    <!-- Role Selection Dropdown -->
+                    <div class="mt-4">
+                        <label for="role" class="block text-gray-700">Select your role</label>
+                        <select id="role" name="role" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" onchange="document.getElementById('instructorNameInput').style.display = this.value === 'instructor' ? 'block' : 'none';">
+                            <option value="">--Please choose an option--</option>
+                            <option value="student">Employee</option>
+                            <option value="instructor">Instructor</option>
+                        </select>
+                    </div>
+
+                    <!-- Instructor Name and Qualification Inputs (hidden by default) -->
+                    <div id="instructorNameInput" class="mt-4" style="display: none;">
+                        <label for="instructorName" class="block text-gray-700">Instructor Name:</label>
+                        <input type="text" id="instructorName" name="instructorName" placeholder="Enter Instructor Name" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+
+                        <label for="instructorQualification" class="block text-gray-700 mt-4">Instructor Qualification:</label>
+                        <input type="text" id="instructorQualification" name="instructorQualification" placeholder="Enter Instructor Qualification" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">
+                        Register
+                    </button>
+                </form>
+
+                <!-- Divider OR Section -->
+                <div class="mt-7 grid grid-cols-3 items-center text-gray-500">
+                    <hr class="border-gray-500" />
+                    <p class="text-center text-sm">OR</p>
+                    <hr class="border-gray-500" />
+                </div>
+
+
+                <!-- Redirect to Login -->
+                <div class="text-sm flex justify-between items-center mt-3">
+                    <p>Already have an account?</p>
+                    <a href="{% url 'login' %}" class="py-2 px-5 ml-3 bg-white border rounded-xl hover:scale-110 duration-300 border-blue-400">Login</a>
+                </div>
+            </div>
+
+            <!-- Right section: image (hidden on small screens) -->
+            <div class="w-1/2 md:block hidden">
+                <img src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" class="rounded-2xl" alt="Register Image">
+            </div>
+        </div>
+    </section>
+</body>
+</html>

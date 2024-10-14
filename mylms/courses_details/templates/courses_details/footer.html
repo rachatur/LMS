@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Learning Management System{% endblock %}</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-6">
+            <p>ethx@gmail.com 2024  Learning Management System.</p>
+          </div>
+          <div class="col-md-6">
+            <a href="#" class="mr-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="mr-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="mr-3"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Card</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background */
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+            margin-top: 20px; /* Space above the card */
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Circular avatar */
+            background-color: #007bff; /* Avatar background color */
+            color: white; /* Initials color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px; /* Font size for initials */
+            margin-right: 10px; /* Space between avatar and text */
+        }
+
+        .dropdown-toggle::after {
+            display: none; /* Remove default dropdown arrow */
+        }
+
+        .role {
+            font-size: 0.9rem; /* Font size for role */
+            color: #6c757d; /* Grey color for text */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-card">
+        <div class="avatar">S</div>
+        <div>
+            <div class="font-weight-bold">S. Te</div>
+            <div class="role">Administrator</div>
+        </div>
+        <div class="dropdown ml-auto">
+            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action 1</a>
+                <a class="dropdown-item" href="#">Action 2</a>
+                <a class="dropdown-item" href="#">Action 3</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html> {% endcomment %}

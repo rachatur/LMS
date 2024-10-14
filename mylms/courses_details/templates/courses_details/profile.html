@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="My Profile Account - Discover a variety of courses tailored to elevate your skills and knowledge."
+    />
+    <title>My Profile Account</title>
+    <link rel="stylesheet" href="path/to/your/styles.css" />
+    <!-- Link to your CSS file -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <style>    
+      .banner {
+        background-color: #c8d4df;
+        height: 18rem; /* Adjusted height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .banner-content h3 {
+        font-size: 2.5rem; /* Larger title */
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .banner-content p {
+        font-size: 1.2rem; /* Font size for description */
+      }
+
+      /* Login Button Styling */
+      .btn-login {
+        width: 20rem;
+        background-color: #007bff; /* Primary blue color */
+        color: white;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin: 1.5rem auto; /* Centers the button horizontally */
+        display: block;
+        text-align: center;
+      }
+
+      .btn-login:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: scale(1.05);
+      }
+
+      /* Card Styles */
+      .card {
+        border: none; /* Removes default border */
+        border-radius: 10px; /* Rounded corners */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        margin-bottom: 2rem; /* Space between cards */
+      }
+
+      .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Card hover shadow */
+      }
+
+      .card-img-top {
+        height: 220px; /* Slightly taller image */
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-text {
+        font-size: 1rem;
+        color: #6c757d;
+      }
+
+      /* Container for courses */
+      .container {
+        margin-top: 3rem; /* Increased space from top */
+      }
+
+      /* Headings */
+      .head {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #343a40; /* Dark grey heading */
+        margin-bottom: 1.5rem;
+      }
+
+      /* Button inside cards */
+      .btn-primary {
+        width: 100%; /* Full width buttons inside the cards */
+        padding: 0.6rem;
+        font-size: 1rem;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #343a40;
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    {% include 'courses_details/header2.html' %}
+    <!-- Main Content -->
+    <div class="content">
+      {% block content %}
+      <!-- Banner Section -->
+      <div class="banner mt-5">
+        <div class="banner-content text-center text-white">
+          <h3 class="head">My Profile Account</h3>
+          <p style="font-weight: bold">
+            Welcome back! Discover a variety of courses tailored to elevate your
+            skills and knowledge.
+          </p>
+          <p> Dive into our curated courses and start your learning journey today! </p>
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <a class="btn-login" href="{% url 'login' %}">
+        <i class="fas fa-user"></i> Login
+      </a>
+
+      <!-- Card Section -->
+      <div class="container mt-5 mb-5">
+        <h3 class="head text-center mb-4">Our Most Popular Courses</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="{% static 'assets/card1.jpg' %}"
+                class="card-img-top"
+                alt="Social Media Marketing Course"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Social Media Marketing</h5>
+                <p class="card-text">
+                  Master the art of social media marketing with our
+                  comprehensive course. Learn strategies to boost your brand's
+                  presence and engage effectively with your audience.
+                </p>
+                <a href="#" class="btn btn-primary">See Course</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="{% static 'assets/card2.jpg' %}"
+                class="card-img-top"
+                alt="Email Marketing Strategies Course"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Email Marketing Strategies</h5>
+                <p class="card-text">
+                  Learn how to create effective email marketing campaigns that
+                  convert. This course covers design, copywriting, and analytics
+                  to help you succeed.
+                </p>
+                <a href="#" class="btn btn-primary">See Course</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+              <img
+                src="{% static 'assets/card3.jpg' %}"
+                class="card-img-top"
+                alt="Content Marketing Course"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Content Marketing</h5>
+                <p class="card-text">
+                  Discover the secrets of creating engaging content that
+                  attracts and retains customers. This course explores various
+                  content formats and distribution strategies.
+                </p>
+                <a href="#" class="btn btn-primary">See Course</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    {% comment %} {% include 'courses_details/footer.html' %} {% endcomment %}
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .profile-card {
+            display: flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4285F4;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .details {
+            display: flex;
+            flex-direction: column;
+        }
+        .name-role {
+            font-size: 14px;
+        }
+        .role {
+            color: gray;
+            font-size: 12px;
+        }
+    </style>
+    <title>Profile Card</title>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="avatar">{{ initials }}</div>
+        <div class="details">
+            <div class="name-role">{{ username }}</div>
+            <div class="role">{{ role }}</div>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
