@@ -9,8 +9,8 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login
-
-
+# temp
+ 
 def register(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
