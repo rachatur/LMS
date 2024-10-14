@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filters Example</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* Styling for the filters section */
+      .filter-section {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%; /* Use full width */
+        margin: 20px auto; /* Center it */
+      }
+
+      .filter-section h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .filter-section .form-check {
+        margin-bottom: 10px;
+      }
+
+      .filter-section .view-more-btn {
+        margin: 10px 0;
+        display: block;
+        text-align: center;
+      }
+
+      .filter-section .divider {
+        margin: 20px 0;
+        border-top: 1px solid #ddd;
+      }
+
+      details ul {
+        list-style-type: none;
+        padding-left: 20px;
+        margin-top: 10px;
+      }
+
+      details ul li {
+        margin-bottom: 5px;
+      }
+
+      .card {
+        border: none; /* Remove default border */
+        transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
+        opacity: 0.9; /* Slightly transparent */
+      }
+
+      .card:hover {
+        transform: scale(1.05); /* Scale up on hover */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+      }
+
+      .card-img-top {
+        height: 200px; /* Adjust height as needed */
+        object-fit: cover; /* Maintain aspect ratio */
+      }
+
+       /* Styling for the search bar */
+       .search-container {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+    }
+    
+    .search-bar {
+        width: 100%;
+        max-width: 400px; /* Max width of the search bar */
+        position: relative;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 10px 40px 10px 20px; /* Padding for input */
+        border: 1px solid #ccc;
+        border-radius: 25px; /* Rounded corners */
+        outline: none; /* Remove outline */
+        transition: border-color 0.3s; /* Transition for border color */
+    }
+    
+    .search-input:focus {
+        border-color: #007bff; /* Change border color on focus */
+    }
+    
+    .search-icon {
+        position: absolute;
+        right: 40px; /* Adjusted position for the search icon */
+        top: 50%;
+        transform: translateY(-50%); /* Centering the icon */
+        color: #777; /* Icon color */
+    }
+    
+    .clear-icon {
+        position: absolute;
+        right: 10px; /* Positioning of the clear icon */
+        top: 50%;
+        transform: translateY(-50%); /* Centering the icon */
+        color: #777; /* Icon color */
+        cursor: pointer; /* Change cursor to pointer */
+        font-size: 18px; /* Adjust font size */
+    }    
+    </style>
+  </head>
+  <body>
+    {% include 'courses_details/header.html' %}
+    <br /><br />
+    <div class="content">
+      <div class="container mt-2">
+        <div class="search-container">
+          <div class="search-bar">
+              <input type="text" class="form-control search-input" placeholder="Search" id="searchInput">
+              <span class="search-icon">&#128269;</span> <!-- Magnifying glass icon -->
+              <span class="clear-icon" id="clearSearch" style="display: none;">&#10005;</span> <!-- Cross icon -->
+          </div>
+      </div>
+      </div>
+      <div class="container mt-2">
+        <div class="row">
+          <div class="col-md-3">
+            <!-- Filters Section -->
+            <div class="filter-section">
+              <!-- Collections Section -->
+              <h4>Collections <a href="#" class="reset">Reset</a></h4>
+
+              <!-- Business Skills -->
+              <details open>
+                <summary>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="businessSkills"
+                    />
+                    <label class="form-check-label" for="businessSkills">
+                      Business Skills <span class="text-muted">(227)</span>
+                    </label>
+                  </div>
+                </summary>
+                <ul>
+                  <li>
+                    <input type="checkbox" /> Business Continuity Applied (5)
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Business Continuity Essentials (5)
+                  </li>
+                  <li><input type="checkbox" /> Coaching Applied (5)</li>
+                  <li><input type="checkbox" /> Coaching Essentials (10)</li>
+                  <li>
+                    <input type="checkbox" /> Contract Management Essentials (5)
+                  </li>
+                  <li><input type="checkbox" /> Corporate Risk (5)</li>
+                  <li><input type="checkbox" /> Data Analysis (20)</li>
+                  <li>
+                    <input type="checkbox" />
+                    Digital Transformation Essentials (10)
+                  </li>
+                  <li><input type="checkbox" /> Finance Applied (5)</li>
+                  <li><input type="checkbox" /> Finance Essentials (10)</li>
+                  <li><input type="checkbox" /> KPIs and OKRs (10)</li>
+                </ul>
+              </details>
+
+              <!-- Human Resources -->
+              <details>
+                <summary>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="humanResources"
+                    />
+                    <label class="form-check-label" for="humanResources">
+                      Human Resources <span class="text-muted">(122)</span>
+                    </label>
+                  </div>
+                </summary>
+                <ul>
+                  <li><input type="checkbox" /> Company Culture (10)</li>
+                  <li>
+                    <input type="checkbox" /> Diversity and Inclusion (10)
+                  </li>
+                  <li><input type="checkbox" /> Employee Experience (9)</li>
+                  <details>
+                    <summary>
+                      <input type="checkbox" id="employeeLifeCycle" />
+                      <label for="employeeLifeCycle"
+                        >Employee Life Cycle (21)</label
+                      >
+                    </summary>
+                    <ul>
+                      <li><input type="checkbox" /> Employee Onboarding (4)</li>
+                      <li><input type="checkbox" /> Employee Retention (8)</li>
+                      <li>
+                        <input type="checkbox" /> Employee Termination (5)
+                      </li>
+                      <li>
+                        <input type="checkbox" /> Recruitment Essentials (4)
+                      </li>
+                    </ul>
+                  </details>
+                  <li><input type="checkbox" /> HR Essentials (10)</li>
+                  <li><input type="checkbox" /> HR Strategy (5)</li>
+                  <li><input type="checkbox" /> Hybrid Working (5)</li>
+                  <li><input type="checkbox" /> Learning Applied (10)</li>
+                  <li><input type="checkbox" /> Learning Essentials (9)</li>
+                  <li><input type="checkbox" /> Mental Health Awareness (4)</li>
+                  <li><input type="checkbox" /> Neurodiversity (5)</li>
+                  <li><input type="checkbox" /> Nurturing Talent (5)</li>
+                  <li><input type="checkbox" /> Performance Management (9)</li>
+                  <li><input type="checkbox" /> Work Ethic (10)</li>
+                </ul>
+              </details>
+
+              <!-- Leadership -->
+              <details>
+                <summary>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="leadership"
+                    />
+                    <label class="form-check-label" for="leadership">
+                      Leadership <span class="text-muted">(91)</span>
+                    </label>
+                  </div>
+                </summary>
+                <ul>
+                  <li><input type="checkbox" /> Adaptive Leadership (5)</li>
+                  <li><input type="checkbox" /> Business Innovation (10)</li>
+                  <li>
+                    <input type="checkbox" />
+                    Communication Skills Applied (10)
+                  </li>
+                  <li><input type="checkbox" /> Entrepreneurship (10)</li>
+                  <li><input type="checkbox" /> Leadership Essentials (16)</li>
+                  <li><input type="checkbox" /> Leadership Toolkit (10)</li>
+                  <li><input type="checkbox" /> Remote Leadership (5)</li>
+                  <li><input type="checkbox" /> Safety Leadership (5)</li>
+                  <li><input type="checkbox" /> The Creative Process (10)</li>
+                  <li>
+                    <input type="checkbox" /> The Leadership Role Model (10)
+                  </li>
+                </ul>
+              </details>
+
+              <!-- View More Button -->
+              <button class="btn btn-outline-primary view-more-btn">
+                View more
+              </button>
+
+              <!-- Divider -->
+              <div class="divider"></div>
+
+              <!-- Languages Section -->
+              <h4>Languages</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="language"
+                  id="english"
+                  checked
+                />
+                <label class="form-check-label" for="english">
+                  English <span class="text-muted">(911)</span>
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="language"
+                  id="spanish"
+                />
+                <label class="form-check-label" for="spanish">
+                  Spanish <span class="text-muted">(100)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Cards Section1 -->
+          <div class="col-md-9">
+            <div class="row mt-4">
+              <div class="col-md-4"> <!-- Adjusting column size for more cards -->
+                <div class="card">
+                  <img
+                      src="{% static 'assets/python.webp' %}"
+                      class="card-img-top"
+                      alt="Python Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title"> Python </h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                      src="{% static 'assets/AI_img.jpg' %}"
+                      class="card-img-top"
+                      alt="AI Learning Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title">AI Learning</h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                      src="{% static 'assets/frontend.webp' %}"
+                      class="card-img-top"
+                      alt="HTML/CSS/Javascript Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title"> HTML/CSS/script </h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Cards Section2 -->
+          {% comment %} <div class="col-md-9" style="margin-left: 23rem;margin-top: -7rem;">
+            <div class="row mt-4">
+              <div class="col-md-3">
+                <div class="card">
+                  <img
+                      src="{% static 'assets/python.webp' %}"
+                      class="card-img-top"
+                      alt="Machine Learning Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title"> Python </h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+              </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img
+                      src="{% static 'assets/AI_img.jpg' %}"
+                      class="card-img-top"
+                      alt="Machine Learning Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title">AI Learning</h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+              </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img
+                      src="{% static 'assets/frontend.webp' %}"
+                      class="card-img-top"
+                      alt="Machine Learning Course" style='padding: 2px;'
+                  />
+                  <div class="card-body">
+                      <h5 class="card-title"> HTML/CSS/Script </h5>
+                      <a href="#" class="btn btn-primary">View Course</a>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div> {% endcomment %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS for Reset and View More/Less -->
+    <script>
+      document.querySelector(".reset").addEventListener("click", function (e) {
+        e.preventDefault();
+        // Close all details tags
+        document.querySelectorAll("details").forEach(function (detail) {
+          detail.removeAttribute("open");
+        });
+      });
+
+      document
+        .querySelector(".view-more-btn")
+        .addEventListener("click", function () {
+          // Toggle visibility of extra items
+          document.querySelectorAll(".extra-items").forEach(function (item) {
+            item.style.display =
+              item.style.display === "none" || item.style.display === ""
+                ? "list-item"
+                : "none";
+          });
+
+          // Toggle button text
+          this.textContent =
+            this.textContent === "View more" ? "View less" : "View more";
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+          const searchInput = document.getElementById("searchInput");
+          const clearSearch = document.getElementById("clearSearch");
+      
+          // Show clear icon when there is text in the search input
+          searchInput.addEventListener("input", function() {
+              clearSearch.style.display = this.value ? "block" : "none"; // Show or hide the clear icon
+          });
+      
+          // Clear the input when the clear icon is clicked
+          clearSearch.addEventListener("click", function() {
+              searchInput.value = ""; // Clear the input
+              this.style.display = "none"; // Hide the clear icon
+              searchInput.focus(); // Focus back on the input
+          });
+      
+          // Optional: Add functionality to search when pressing Enter
+          searchInput.addEventListener("keypress", function(event) {
+              if (event.key === "Enter") {
+                  // Handle search action here, for example:
+                  alert("Search for: " + this.value);
+                  // You can also add your search logic or redirect based on this value
+              }
+          });
+      });
+      
+    </script>
+  </body>
+</html>

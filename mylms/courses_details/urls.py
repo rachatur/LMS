@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact_us/',views.contact_us, name='contact_us'),
     path('instructor/',views.instructor, name='instructor'),
     path('my_courses/',views.my_courses, name='my_courses'),
+    path('course_store/', views.course_store, name='course_store'),
     # path('login/',views.login, name='login'),
     path('profile/',views.profile, name='profile'),
     # path('register/',views.register, name='register'),

@@ -93,6 +93,9 @@ def home(request):
 def my_courses(request):
     return render(request, 'courses_details/my_courses.html')
 
+def course_store(request):
+    return render(request, 'courses_details/course_store.html')
+
 def instructor(request):
     return render(request, 'courses_details/instructor.html')
 
