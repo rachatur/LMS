@@ -129,10 +129,10 @@
       .profile-card {
         display: flex;
         align-items: center;
-        padding: 2px;
+        padding: 1px;
         border: 1px solid #ddd;
         background-color: #f9f9f9;
-        border-radius: 5px;
+        border-radius: 8px;
         width: 250px;
     }
 
@@ -147,12 +147,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 10px;
+        margin-left: 22px;
     }
 
     .role {
         font-size: 12px;
         color: #666;
+        margin-left: 15px;
+    }
+    .font-weight-bold{
+      margin-left: 15px;
     }
     </style>
   </head>
@@ -184,8 +188,14 @@
 
           <!-- Name and Role -->
           <div>
-            <div class="font-weight-bold">S. Te</div>
-            <div class="role">Administrator</div>
+            <div class="font-weight-bold">{{ user.username }}</div>
+            {% if user.is_instructor %}
+              <div class="role">Instructor</div>
+            {% elif user.is_admin %}
+              <div class="role">Admin</div>
+            {% else %}
+              <div class="role">Employee</div>
+            {% endif %}
           </div>
 
           <!-- Profile Section aligned to the right -->
@@ -207,7 +217,7 @@
     width: 16rem;">
               <a class="dropdown-item" href="{% url 'home' %}">Profile</a>
               <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+              <a class="dropdown-item" href="{% url 'home' %}">Logout</a>
             </div>
           </li>
         </div>
@@ -216,6 +226,8 @@
 
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
+      <!-- Admin Sidebar -->
+      {% if user.is_admin %}
       <ul>
         <li>
           <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
@@ -242,7 +254,52 @@
           <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
         </li>
       </ul>
-    </div>
+      {% endif %}
+
+      <!-- Instructor Sidebar -->
+      {% if user.is_instructor %}
+      <ul>
+        <li>
+          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="{% url 'my_courses' %}"><i class="fas fa-book"></i> My Courses</a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}"><i class="fas fa-tasks"></i> Assignments</a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}"><i class="fas fa-question-circle"></i> Quiz</a>
+        </li>
+        <li>
+          <a href="{% url 'home' %}"><i class="fas fa-file-alt"></i> Reports</a>
+        </li>
+        <li>
+          <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+        </li>
+      </ul>
+      {% endif %}
+
+      <!-- Regular User Sidebar -->
+      {% if user.is_employee %}
+      <ul>
+        <li>
+          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="{% url 'my_courses' %}"><i class="fas fa-book"></i> My Courses</a>
+        </li>
+        <li>
+          <a href="{% url 'course_store' %}"><i class="fas fa-store"></i> Course Store</a>
+        </li>
+        <li>
+          <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+        </li>
+      </ul>
+      {% endif %}
+</div>
+
+
 
     <!-- Content (optional) -->
     {% comment %}

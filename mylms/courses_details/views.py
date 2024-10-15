@@ -9,37 +9,46 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login
-# temp
- 
+from django.contrib.auth import login as auth_login
+
+
 def register(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
-        print(form.errors)
-        print('outside')
         if form.is_valid():
-            user = form.save()
-            print('hi')
+            # Create the user object but don't save it yet
+            user = form.save(commit=False)
 
-            # Check the role
+            # Set the password manually
+            password = form.cleaned_data.get('password1')
+            user.set_password(password)
+            user.save()
+
+            # Handle role-specific data
             role = request.POST.get('role')
             if role == 'instructor':
                 instructor_name = request.POST.get('instructorName')
                 instructor_qualification = request.POST.get('instructorQualification')
 
-                # Save instructor data
+                # Save the instructor-specific data
                 InstructorData.objects.create(
                     user=user,
                     instructorName=instructor_name,
                     instructorQualification=instructor_qualification
                 )
 
-            # Authenticate the user before logging in
-            user = authenticate(username=user.username, password=request.POST.get('password1'))
-
-            if user is not None:
-                # Log the user in and redirect to home
-                # login(request, user)  # Call the correct login function with request and user
-                return redirect('home')  # Make sure you have 'home' URL defined in urls.py
+            # Authenticate the user
+            authenticated_user = authenticate(username=user.username, password=password)
+            if authenticated_user is not None:
+                # Log the user in if authentication is successful
+                login(request, authenticated_user)
+                return redirect('dashboard')  # Ensure 'home' is defined in your URLs
+            else:
+                # Handle the case where authentication fails (unlikely but good practice)
+                print("Authentication failed")
+        else:
+            # Print form errors if the form is invalid
+            print("Form is not valid", form.errors)
     else:
         form = SignUpForm()
 
@@ -52,12 +61,16 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
+            # Authenticate the user
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                # login(request, user)
-                return redirect('dashboard')  # Redirect to dashboard or another page after successful login
+                # Log in the user if authentication is successful
+                auth_login(request, user)  # Use the renamed login
+                return redirect('dashboard')  # Redirect to the dashboard after logging in
             else:
                 messages.error(request, 'Invalid username or password')
+        else:
+            messages.error(request, 'Please correct the errors below')
     else:
         form = LoginForm()
 

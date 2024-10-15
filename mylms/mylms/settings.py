@@ -81,6 +81,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ethx_mysql',  # Name of your MySQL database
+#         'USER': 'ethxlms',  # Your MySQL user
+#         'PASSWORD': 'sachin@1234',  # Your MySQL user password
+#         'HOST': '35.231.4.250',  # External IP of your MySQL instance from GCP
+#         'PORT': '3306',  # Default MySQL port
+#
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
