@@ -51,6 +51,9 @@
       .row > .col-md-3 {
         margin-bottom: 15px; /* Space between columns */
       }
+      .content{
+      background-color: #bddcdd;
+      }
     </style>
   </head>
   <body>
@@ -71,8 +74,8 @@
                 <div class="col-md-6 mt-3">
                   <div class="card text-center" style="background-color: #c0dde6;">
                     <div class="card-body">
-                      <h5 class="card-title">1</h5>
-                      <p class="card-title">Active users</p>
+                        <h5 class="card-title">{{ active_users_count }}</h5>
+                        <p class="card-title">Active users</p>
                     </div>
                   </div>
                 </div>
@@ -128,42 +131,33 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 mt-3">
-                  <div class="card text-center" style="background-color: #c0dde6;">
-                    <div class="card-body">
-                      <i class="fas fa-users action-icon"></i>
-                      <h5 class="card-title">Add group</h5>
+               <div class="col-md-6 mt-3">
+                  <a href="{% url 'groups_list' %}" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center" style="background-color: #c0dde6;">
+                      <div class="card-body">
+                        <i class="fas fa-users action-icon"></i>
+                        <h5 class="card-title">Add group</h5>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </a>
+               </div>
+
                 <div class="col-md-6 mt-3">
-                  <div class="card text-center" style="background-color: #c0dde6;">
-                    <div class="card-body">
-                      <i class="fas fa-folder action-icon"></i>
-                      <h5 class="card-title">Add category</h5>
+                 <a href="{% url 'portal' %}" style="text-decoration: none; color: inherit;">
+                    <div class="card text-center" style="background-color: #c0dde6;">
+                      <div class="card-body">
+                        <i class="fas fa-users action-icon"></i>
+                        <h5 class="card-title">Portal</h5>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
-                <div class="col-md-6 mt-3">
-                  <div class="card text-center" style="background-color: #c0dde6;">
-                    <div class="card-body">
-                      <i class="fas fa-globe action-icon"></i>
-                      <h5 class="card-title">Portal</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mt-3">
-                  <div class="card text-center" style="background-color: #c0dde6;">
-                    <div class="card-body">
-                      <i class="fas fa-file-import action-icon"></i>
-                      <h5 class="card-title">Import-Export</h5>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <!-- section-2  -->
@@ -355,168 +349,3 @@
   </body>
 </html>
 
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Quick Actions</title>
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <style>
-      body {
-        background-color: #f8f9fa; /* Light background */
-      }
-
-      .card {
-        border: none; /* Remove border */
-        border-radius: 10px; /* Rounded corners */
-        background-color: white; /* White background for cards */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
-      }
-
-      .card-title {
-        font-size: 1.5rem; /* Font size for the title */
-        font-weight: bold; /* Bold font */
-      }
-
-      .card-text {
-        font-size: 1rem; /* Font size for text */
-        color: #6c757d; /* Grey color for text */
-      }
-
-      .container {
-        margin-top: 30px; /* Space above the container */
-      }
-
-      .action-icon {
-        font-size: 40px; /* Icon size */
-        margin-bottom: 10px; /* Space below icon */
-        color: #6c757d; /* Icon color */
-      }
-
-      h1 {
-        font-size: 2rem; /* Header size */
-        margin-bottom: 20px; /* Space below header */
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Overview Section -->
-      <h1 class="my-4">Overview</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">1</h5>
-                  <p class="card-text">Active users</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">0</h5>
-                  <p class="card-text">Assigned courses</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">0h 0m</h5>
-                  <p class="card-text">Training time</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">0.0%</h5>
-                  <p class="card-text">Completion rate</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Actions Section -->
-      <h1 class="my-4">Quick Actions</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-user action-icon"></i>
-                  <h5 class="card-title">Add user</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-book action-icon"></i>
-                  <h5 class="card-title">Add course</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-users action-icon"></i>
-                  <h5 class="card-title">Add group</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-folder action-icon"></i>
-                  <h5 class="card-title">Add category</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-globe action-icon"></i>
-                  <h5 class="card-title">Portal</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center">
-                <div class="card-body">
-                  <i class="fas fa-file-import action-icon"></i>
-                  <h5 class="card-title">Import-Export</h5>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Font Awesome for icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-  </body>
-</html>
-{% endcomment %}

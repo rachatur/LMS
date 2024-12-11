@@ -1,0 +1,23 @@
+# app.yaml
+runtime: python312
+
+entrypoint: gunicorn -b :$PORT mylms.wsgi
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: "mylms.settings"
+  SECRET_KEY: "django-insecure-(!9qr^&oph3bkcqf8+)3@dh6bcv#rbs=uvu$9_2bs0yyik5!y@"
+  DEBUG: "False"
+  ALLOWED_HOSTS: "restapitable.uc.r.appspot.com,localhost"
+
+  # Database connection for Cloud SQL
+  DB_NAME: "lmsmysql"
+  DB_USER: "ethxlms"
+  DB_PASSWORD: "sanket@1234"
+  DB_HOST: "/cloudsql/restapitable:us-central1:lmsmysql"  # Use the instance connection name, not the IP
+
+# Static file handlers
+handlers:
+  - url: /static
+    static_dir: uploads/static/
+  - url: /.*
+    script: auto

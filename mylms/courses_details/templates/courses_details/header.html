@@ -1,269 +1,350 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% load static %}
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sidebar with Navbar</title>
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <style>
-      /* Sidebar custom styles */
-      .sidebar {
-        position: fixed;
-        top: 3.5rem; /* Align with navbar */
-        left: -250px; /* Initially hidden */
-        width: 250px; /* Set sidebar width */
-        height: 100%;
-        background-color: #233140; /* Sidebar background color */
-        color: white;
-        padding-top: 20px;
-        transition: left 0.3s ease;
-      }
+  <!DOCTYPE html>
+  <html lang="en">
+    {% load static %}
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Sidebar with Navbar</title>
+      <!-- Bootstrap CSS -->
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      />
+      <!-- Font Awesome for icons -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
+      <style>
+        /* Sidebar custom styles */
+        .sidebar {
+          position: fixed;
+          top: 3.5rem; /* Align with navbar */
+          left: -250px; /* Initially hidden */
+          width: 250px; /* Set sidebar width */
+          height: 100%;
+          background-color: #233140; /* Sidebar background color */
+          color: white;
+          padding-top: 20px;
+          transition: left 0.3s ease;
+        }
 
-      .sidebar.active {
-        left: 0; /* Show sidebar */
-      }
+        .sidebar.active {
+          left: 0; /* Show sidebar */
+        }
 
-      .sidebar ul {
-        list-style-type: none;
-        padding-left: 0;
-      }
+        .sidebar ul {
+          list-style-type: none;
+          padding-left: 0;
+        }
 
-      .sidebar ul li {
-        padding: 15px 20px;
-      }
+        .sidebar ul li {
+          padding: 15px 20px;
+        }
 
-      .sidebar ul li a {
-        color: white;
-        text-decoration: none;
+        .sidebar ul li a {
+          color: white;
+          text-decoration: none;
+          display: block;
+        }
+
+        .sidebar ul li a:hover {
+          background-color: #495057; /* Hover effect */
+        }
+
+        /* Navbar adjustment */
+        .navbar {
+          z-index: 1030;
+          background-color: #fff; /* Navbar background color */
+          border-bottom: 2px solid #ccc;
+        }
+
+        /* Content styling */
+        .content {
+          margin-left: 0; /* Initially no left margin */
+          padding: 20px;
+          transition: margin-left 0.3s ease; /* Smooth transition */
+        }
+
+        /* Adjust when the sidebar is open */
+        .sidebar.active ~ .content {
+          margin-left: 250px; /* Add left margin when sidebar is active */
+        }
+
+        /* Toggle button styles */
+        .navbar-toggler {
+          border: none; /* Remove border */
+          color: rgb(255, 255, 255); /* Default text color */
+          background-color: white; /* Button background color */
+          border-radius: 5px; /* Rounded corners */
+          padding: 10px; /* Padding for larger clickable area */
+          transition: background-color 0.3s, opacity 0.3s; /* Smooth transition */
+          opacity: 0.8; /* Slightly transparent */
+        }
+
+        .navbar-toggler:hover {
+          background-color: #f2f4f6; /* Change background on hover */
+          opacity: 1; /* Fully opaque on hover */
+        }
+
+        .navbar-toggler:focus {
+          box-shadow: none; /* Remove outline */
+        }
+
+        .navbar-toggler i {
+          font-size: 16px; /* Icon size */
+          color: black; /* Set icon color to black */
+        }
+
+        /* Change icon color on hover */
+        .navbar-toggler:hover i {
+          color: #f2f4f6; /* Change icon color to white on hover */
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          padding: 0.5rem;
+          list-style: none;
+          margin: 0;
+          border-radius: 4px;
+        }
+
+        .dropdown-menu .dropdown-item {
+          text-decoration: none;
+          color: #333;
+          padding: 0.5rem 1rem;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+          background-color: #f1f1f1;
+        }
+
+        /* Show Dropdown on Hover */
+        .nav-item.dropdown:hover .dropdown-menu {
+          display: block;
+        }
+        .profile-card {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          border: 1px solid #ddd;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+          width: 230px;
+      }
+      .profile-card:hover .dropdown-menu {
         display: block;
+        z-index: 1000;
       }
 
-      .sidebar ul li a:hover {
-        background-color: #495057; /* Hover effect */
+      .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #4285F4;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 18px;
       }
 
-      /* Navbar adjustment */
-      .navbar {
-        z-index: 1030;
-        background-color: #fff; /* Navbar background color */
+      .role {
+          font-size: 12px;
+          color: #666;
+          margin-left: 15px;
       }
-
-      /* Content styling */
-      .content {
-        margin-left: 0; /* Initially no left margin */
-        padding: 20px;
-        transition: margin-left 0.3s ease; /* Smooth transition */
+      .font-weight-bold{
+        margin-left: 15px;
+        color:black;
       }
+      </style>
+    </head>
+    <body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-dark fixed-top nav-bordered">
+        <div
+          class="container-fluid d-flex align-items-center justify-content-between"
+        >
+          <!-- Toggle Button on the left next to the logo -->
+          <button id="toggle-btn" class="navbar-toggler" type="button">
+            <i class="fas fa-bars"></i>
+            <!-- Use an icon to indicate toggle -->
+          </button>
 
-      /* Adjust when the sidebar is open */
-      .sidebar.active ~ .content {
-        margin-left: 250px; /* Add left margin when sidebar is active */
-      }
+          <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">
+            <img
+              src="{% static 'assets/logo.png' %}"
+              alt="My Logo"
+              style="height: 40px; margin-left: -31rem"
+            />
+            <!-- Adjust height as needed -->
+          </a>
 
-      /* Toggle button styles */
-      .navbar-toggler {
-        border: none; /* Remove border */
-        color: rgb(255, 255, 255); /* Default text color */
-        background-color: white; /* Button background color */
-        border-radius: 5px; /* Rounded corners */
-        padding: 10px; /* Padding for larger clickable area */
-        transition: background-color 0.3s, opacity 0.3s; /* Smooth transition */
-        opacity: 0.8; /* Slightly transparent */
-      }
+          <!-- My Profile on the Right -->
+          <div class="profile-card">
+            <!-- Avatar -->
+            <div class="avatar">S</div>
 
-      .navbar-toggler:hover {
-        background-color: #f2f4f6; /* Change background on hover */
-        opacity: 1; /* Fully opaque on hover */
-      }
-
-      .navbar-toggler:focus {
-        box-shadow: none; /* Remove outline */
-      }
-
-      .navbar-toggler i {
-        font-size: 16px; /* Icon size */
-        color: black; /* Set icon color to black */
-      }
-
-      /* Change icon color on hover */
-      .navbar-toggler:hover i {
-        color: #f2f4f6; /* Change icon color to white on hover */
-      }
-
-      /* Dropdown Menu */
-      .dropdown-menu {
-        display: none;
-        position: absolute;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        padding: 0.5rem;
-        list-style: none;
-        margin: 0;
-        border-radius: 4px;
-      }
-
-      .dropdown-menu .dropdown-item {
-        text-decoration: none;
-        color: #333;
-        padding: 0.5rem 1rem;
-      }
-
-      .dropdown-menu .dropdown-item:hover {
-        background-color: #f1f1f1;
-      }
-
-      /* Show Dropdown on Hover */
-      .nav-item.dropdown:hover .dropdown-menu {
-        display: block;
-      }
-      .profile-card {
-        display: flex;
-        align-items: center;
-        padding: 2px;
-        border: 1px solid #ddd;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-        width: 250px;
-    }
-
-    .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #4285F4;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 10px;
-    }
-
-    .role {
-        font-size: 12px;
-        color: #666;
-    }
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark fixed-top">
-      <div
-        class="container-fluid d-flex align-items-center justify-content-between"
-      >
-        <!-- Toggle Button on the left next to the logo -->
-        <button id="toggle-btn" class="navbar-toggler" type="button">
-          <i class="fas fa-bars"></i>
-          <!-- Use an icon to indicate toggle -->
-        </button>
-
-        <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">
-          <img
-            src="{% static 'assets/logo.png' %}"
-            alt="My Logo"
-            style="height: 40px; margin-left: -27rem"
-          />
-          <!-- Adjust height as needed -->
-        </a>
-
-        <!-- My Profile on the Right -->
-        <div class="profile-card">
-          <!-- Avatar -->
-          <div class="avatar">S</div>
-
-          <!-- Name and Role -->
-          <div>
-            <div class="font-weight-bold">S. Te</div>
-            <div class="role">Administrator</div>
-          </div>
-
-          <!-- Profile Section aligned to the right -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="profileDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              {% comment %} <i class="fas fa-user"></i> {% endcomment %}
-              <!-- Font Awesome icon -->
-              {% comment %} <span class="profile-name">My Profile</span> {% endcomment %}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="profileDropdown" style=" margin-left: -8.7rem;
-    width: 16rem;">
-              <a class="dropdown-item" href="{% url 'home' %}">Profile</a>
-              <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            <!-- Name and Role -->
+            <div>
+              <div class="font-weight-bold">{{ user.username }}</div>
+              {% if user.is_instructor %}
+                <div class="role">Instructor</div>
+              {% elif user.is_admin %}
+                <div class="role">Admin</div>
+              {% else %}
+                <div class="role">Employee</div>
+              {% endif %}
             </div>
-          </li>
+
+            <!-- Profile Section aligned to the right -->
+            <div class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="profileDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {% comment %} <i class="fas fa-user"></i> {% endcomment %}
+                <!-- Font Awesome icon -->
+                {% comment %} <span class="profile-name">My Profile</span> {% endcomment %}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="profileDropdown" style="margin-left: -10.9rem; margin-top:0.7rem; width: 14.3rem;">
+
+                <a class="dropdown-item" href="{% url 'dashboard' %}">Profile</a>
+                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+              </div>
+            </div >
+          </div>
         </div>
+      </nav>
+
+      <!-- Sidebar -->
+      <div id="sidebar" class="sidebar">
+        <!-- Admin Sidebar -->
+        {% if user.is_admin %}
+        <ul>
+          <li>
+            <a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="{% url 'course_list' %}"><i class="fas fa-book"></i> My Courses</a>
+          </li>
+          <li>
+            <a href="{% url 'course_store' %}"><i class="fas fa-store"></i> Course Store</a>
+          </li>
+          <li>
+            <a href="{% url 'manage_users' %}"><i class="fas fa-home"></i> User Management</a>
+          </li>
+          <li>
+            <a href="{% url 'groups_list' %}"><i class="fas fa-users"></i> Groups</a>
+          </li>
+          <li>
+            <a href="{% url 'instructor' %}"><i class="fas fa-chalkboard-teacher"></i> Instructor</a>
+          </li>
+          <li>
+            <a href="{% url 'create_assignment' %}"><i class="fas fa-tasks"></i> Assignments</a>
+          </li>
+          <li>
+            <a href="{% url 'vimeo_video' %}"><i class="fas fa-question-circle"></i> Videos</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-file-alt"></i> Reports</a>
+          </li>
+          <li>
+            <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+          </li>
+          <li>
+            <a href="{% url 'portal' %}"><i class="fas fa-envelope"></i> Portal</a>
+          </li>
+        </ul>
+        {% endif %}
+
+        <!-- Instructor Sidebar -->
+        {% if user.is_instructor %}
+        <ul>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="{% url 'course_list' %}"><i class="fas fa-book"></i> My Courses</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-tasks"></i> Assignments</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-question-circle"></i> Quiz</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-file-alt"></i> Reports</a>
+          </li>
+          <li>
+            <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+          </li>
+          <li>
+            <a href="{% url 'portal' %}"><i class="fas fa-envelope"></i> Portal</a>
+          </li>
+        </ul>
+        {% endif %}
+
+        <!-- Regular User Sidebar -->
+        {% if user.is_employee %}
+        <ul>
+          <li>
+            <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="{% url 'course_list' %}"><i class="fas fa-book"></i> My Courses</a>
+          </li>
+          <li>
+            <a href="{% url 'course_store' %}"><i class="fas fa-store"></i> Course Store</a>
+          </li>
+          <li>
+            <a href="{% url 'contact_us' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+          </li>
+          <li>
+            <a href="{% url 'portal' %}"><i class="fas fa-envelope"></i> Portal</a>
+          </li>
+        </ul>
+        {% endif %}
+  </div>
+
+
+      <!-- Content (optional) -->
+      {% comment %}
+      <div class="content mt-5">
+        <h1>Welcome to my page</h1>
+        <p>This is the main content area.</p>
       </div>
-    </nav>
+      {% endcomment %}
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-      <ul>
-        <li>
-          <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
-        </li>
-        <li>
-          <a href="{% url 'my_courses' %}"
-            ><i class="fas fa-book"></i> My Courses</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'about_us' %}"
-            ><i class="fas fa-info-circle"></i> About Us</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'contact_us' %}"
-            ><i class="fas fa-envelope"></i> Contact Us</a
-          >
-        </li>
-        <li>
-          <a href="{% url 'instructor' %}"
-            ><i class="fas fa-chalkboard-teacher"></i> Instructor</a
-          >
-        </li>
-      </ul>
-    </div>
+      <!-- Bootstrap and jQuery JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Content (optional) -->
-    {% comment %}
-    <div class="content mt-5">
-      <h1>Welcome to my page</h1>
-      <p>This is the main content area.</p>
-    </div>
-    {% endcomment %}
+      <script>
+        // Toggle sidebar
+        const toggleBtn = document.getElementById("toggle-btn");
+        const sidebar = document.getElementById("sidebar");
 
-    <!-- Bootstrap and jQuery JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-      // Toggle sidebar
-      const toggleBtn = document.getElementById("toggle-btn");
-      const sidebar = document.getElementById("sidebar");
-
-      toggleBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-      });
-    </script>
-  </body>
-</html>
+        toggleBtn.addEventListener("click", () => {
+          sidebar.classList.toggle("active");
+        });
+      </script>
+    </body>
+  </html>

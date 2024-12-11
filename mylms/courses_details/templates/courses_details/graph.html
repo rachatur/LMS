@@ -10,18 +10,40 @@
       rel="stylesheet"
     />
     <style>
-      .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: white;
+      /* Global Style Enhancements */
+      body {
+        background-color: #f4f7f9;
+        font-family: "Helvetica Neue", sans-serif;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
         margin-bottom: 20px;
       }
+
+      .card {
+        border: none;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
       .chart-container {
         position: relative;
         height: 250px;
       }
+
+      /* Placeholder for No Stats */
       .no-stats {
         display: flex;
         flex-direction: column;
@@ -30,64 +52,117 @@
         height: 250px;
         text-align: center;
       }
+
+      .progress-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Chart Style */
+      .chart-container {
+        margin: 0 auto;
+        width: 200px;
+        height: 200px;
+      }
+
+      .progress-container ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .progress-container li {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      /* Legend color dots */
+      .legend span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+
+      .completed {
+        background-color: #4caf50;
+      }
+
+      .in-progress {
+        background-color: #ffa500;
+      }
+
+      .not-started {
+        background-color: #bebebe;
+      }
+
+      .not-passed {
+        background-color: #ff6347;
+      }
+
+      /* Styling the select dropdown */
+      #timeRange {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      #timeRange:focus {
+        border-color: #007bff;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .progress-container {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container mt-5">
       <div class="row">
         <!-- Portal Activity Section (Left) -->
-        <div class="col-md-6">
-          <div class="card">
-            <h4>Portal activity</h4>
-            <select
-              class="form-select w-auto"
-              aria-label="Select time range"
-              id="timeRange"
-              style="margin-left: 14rem; margin-top: -1.7rem"
-            >
-              <option selected>Month</option>
-              <option value="1">Week</option>
-              <option value="2">Day</option>
-            </select>
-            <div class="chart-container mt-4">
-              <canvas id="activityChart"></canvas>
-            </div>
-          </div>
-        </div>
+<!--        <div class="col-md-6">-->
+<!--          <div class="card">-->
+<!--            <h4>Portal activity</h4>-->
+<!--            <select-->
+<!--              class="form-select w-auto"-->
+<!--              aria-label="Select time range"-->
+<!--              id="timeRange"-->
+<!--              style="margin-left: 14rem; margin-top: -1.7rem"-->
+<!--            >-->
+<!--              <option selected>Month</option>-->
+<!--              <option value="1">Week</option>-->
+<!--              <option value="2">Day</option>-->
+<!--            </select>-->
+<!--            <div class="chart-container mt-4" style="width: 23rem;">-->
+<!--              <canvas id="activityChart"></canvas>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <!-- Courses Progress Status Section (Right) -->
         <div class="col-md-6">
           <div class="card">
             <h4>Courses' progress status</h4>
-            <a href="#" class="btn btn-link p-0">
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                height="32"
-                style="margin-top: -2rem; float: right"
-              >
-                <path
-                  d="M17.502 8.75c0 .416.334.75.75.75h3.191l-6.973 6.969a.75.75 0 001.06 1.06l6.97-6.97v3.191c0 .416.334.75.75.75s.75-.334.75-.75v-5a.748.748 0 00-.75-.75h-4.998a.748.748 0 00-.75.75zM10.25 9A2.249 2.249 0 008 11.25v10.5A2.249 2.249 0 0010.25 24h10.503a2.249 2.249 0 002.25-2.25v-4a.748.748 0 00-.75-.75.748.748 0 00-.75.75v4c0 .416-.335.75-.75.75H10.25a.748.748 0 01-.75-.75v-10.5c0-.416.335-.75.75-.75h4.001c.416 0 .75-.334.75-.75a.748.748 0 00-.75-.75h-4z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </a>
-            <div class="no-stats">
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                height="48"
-              >
-                <path
-                  d="M24 8h-4V6.4a4.4 4.4 0 00-8.8 0V8h-4a2.8 2.8 0 00-2.8 2.8v14.4A2.8 2.8 0 007.2 28h17.6a2.8 2.8 0 002.8-2.8V10.8A2.8 2.8 0 0024 8zM12.8 6.4a2.4 2.4 0 014.8 0V8h-4.8V6.4zm11.2 18.8a.8.8 0 01-.8.8H7.2a.8.8 0 01-.8-.8V10.8a.8.8 0 01.8-.8h17.6a.8.8 0 01.8.8v14.4zM10 14h12v2H10v-2z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-              <p>No stats to show</p>
-              <p>Create now your first course</p>
-              <p><a href="#" class="btn btn-link">Go to courses</a></p>
+            <div class="progress-container">
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <canvas id="progressChart"></canvas>
+              </div>
+              <!-- Legend (List) -->
+              <ul class="legend">
+                <li><span class="completed"></span>Completed</li>
+                <li><span class="in-progress"></span>In progress</li>
+                <li><span class="not-started"></span>Not started</li>
+                <li><span class="not-passed"></span>Not passed</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -95,6 +170,40 @@
     </div>
 
     <script>
+      // Course Progress Chart
+      const progressCtx = document
+        .getElementById("progressChart")
+        .getContext("2d");
+      const progressChart = new Chart(progressCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Completed", "In progress", "Not started", "Not passed"],
+          datasets: [
+            {
+              label: "Courses Progress",
+              data: [40, 30, 20, 10], // Update the data array to reflect progress
+              backgroundColor: [
+                "#4CAF50",
+                "#FFA500",
+                "#BEBEBE",
+                "#FF6347",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            tooltip: {
+              enabled: false,
+            },
+          },
+          cutout: "70%", // Hollow portion of the doughnut
+        },
+      });
+
+      // Portal Activity Chart (Placeholder)
       const ctx = document.getElementById("activityChart").getContext("2d");
       let activityChart;
 
@@ -172,3 +281,4 @@
     </script>
   </body>
 </html>
+

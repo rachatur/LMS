@@ -1,0 +1,22 @@
+# WSGI server
+gunicorn==20.1.0
+
+# Web framework
+Django==4.2
+
+# Django REST framework
+djangorestframework==3.15.1
+
+# HTTP requests
+requests==2.31.0
+
+# Authentication
+django-allauth==65.0.0
+
+social-auth-app-django==5.0.0
+
+django-environ==0.8.1
+
+#mysqlclient==2.2.5
+
+# PyMySQL==1.0.2

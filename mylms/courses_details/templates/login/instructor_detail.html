@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Your custom styles for the instructor detail page */
+    </style>
+</head>
+<body>
+    {% include 'courses_details/header.html' %}
+    <br /><br />
+    <div class="content">
+        <div class="container">
+            <h1>Instructor Details</h1>
+            <div>
+                <p><strong>Instructor Name:</strong> {{ instructor_data.instructorName }}</p>
+                <p><strong>Instructor Qualification:</strong> {{ instructor_data.instructorQualification }}</p>
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+            <a href="{% url 'manage_users' %}" class="btn btn-secondary">Back to Users</a>
+        </div>
+    </div>
+</body>
+</html>

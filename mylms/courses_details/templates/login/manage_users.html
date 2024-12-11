@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3 !important;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto; /* Top margin for spacing */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Darker color for better contrast */
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .alert {
+            background-color: #eaf1fc;
+            color: #007bff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .table-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+            button {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center; /* Center the action buttons */
+            gap: 10px; /* Space between action buttons */
+        }
+
+        .search-container {
+            margin-left: auto; /* Pushes the search form to the right */
+            display: flex;
+            align-items: center; /* Centers the items vertically */
+        }
+
+        .search-input {
+            width: 150px; /* Set a fixed width for the search input */
+            margin-right: 5px; /* Adjust the margin for better spacing */
+            padding: 8px; /* Add padding for better appearance */
+            font-size: 14px; /* Set font size for the input */
+        }
+
+        /* New CSS for smaller search icon */
+        .search-button {
+            padding: 5px 10px; /* Adjust padding for button */
+            display: flex; /* Flex to center icon */
+            align-items: center; /* Center icon vertically */
+            justify-content: center; /* Center icon horizontally */
+        }
+
+        .search-button i {
+            font-size: 14px; /* Smaller icon size */
+            margin-right: 0; /* Remove margin to avoid excess spacing */
+        }
+    </style>
+</head>
+<body>
+    {% include 'courses_details/header.html' %}
+    <br /><br />
+    <div class="content">
+        <div class="container">
+            <div class="actions">
+                <h1>Manage Users</h1>
+
+                <!-- Search User Form -->
+                <div class="search-container">
+                    <form method="get" action="{% url 'manage_users' %}" style="display: flex;">
+                        <input type="text" name="search" class="form-control search-input" placeholder="Search by username" value="{{ request.GET.search }}">
+                        <button type="submit" class="btn btn-primary search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Success messages section -->
+            {% if messages %}
+            <div class="alert">
+                {% for message in messages %}
+                <p>🎉 {{ message|safe }} 🛠️</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="actions">
+                <!-- Back button -->
+                <button onclick="goBack()" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>
+
+            <!-- User table -->
+            <div class="table-container">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th class="text-center">Email</th>
+                            <th>Instructor Name</th>
+                            <th>Instructor Qualification</th>
+                            <th class="text-center" style="width: 16%;">Role</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+
+                            <!-- Display Instructor Data -->
+                            {% with user.instructor_data as instructor %}
+                                {% if instructor %}
+                                    <td>{{ instructor.instructorName }}</td>
+                                    <td>{{ instructor.instructorQualification }}</td>
+                                {% else %}
+                                    <td>-</td>
+                                    <td>-</td>
+                                {% endif %}
+                            {% endwith %}
+
+                            <!-- Role and Actions -->
+                            <td>
+                                <form method="post" action="{% url 'change_user_role' user.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <select name="role" class="form-control">
+                                            <option value="admin" {% if user.is_admin %}selected{% endif %}>Admin</option>
+                                            <option value="instructor" {% if user.is_instructor %}selected{% endif %}>Instructor</option>
+                                            <option value="employee" {% if user.is_employee %}selected{% endif %}>Employee</option>
+                                        </select>
+                                    </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <!-- Change role button -->
+                                    <button type="submit" class="btn btn-primary">
+                                        Change Role
+                                    </button>
+                                </form>
+
+                                <!-- Activate/Deactivate button -->
+                                <form method="post" action="{% if user.is_active %}{% url 'deactivate_user' user.id %}{% else %}{% url 'activate_user' user.id %}{% endif %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    {% if user.is_active %}
+                                    <button type="submit" class="btn btn-warning">
+                                        Deactivate
+                                    </button>
+                                    {% else %}
+                                    <button type="submit" class="btn btn-success">
+                                        Activate
+                                    </button>
+                                    {% endif %}
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

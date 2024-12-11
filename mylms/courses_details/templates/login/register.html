@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+{% load socialaccount %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
     <title>Register Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -12,8 +17,18 @@
             <!-- Left section: form -->
             <div class="md:w-1/2 px-5">
                 <h2 class="text-2xl font-bold text-[#002D74]">Register</h2>
+
+                <!-- Login with Google box -->
+                <a href="{% provider_login_url 'google' %}" style="width: 100%;">
+                    <div class="mt-4 my-2 p-2 bg-white border rounded-lg shadow-md text-center cursor-pointer">
+                        <span class="inline-block">
+                            Register With <img src="https://img.icons8.com/color/30/000000/google-logo.png" class="inline-block ml-2"/>
+                        </span>
+                    </div>
+                </a>
+
                 <p class="text-sm mt-4 text-[#002D74]">Create your account by filling out the form below</p>
-                <form class="mt-6" method="POST">
+                <form class="mt-6" method="POST" onsubmit="return validatePasswords()">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
 
@@ -32,13 +47,14 @@
                     <!-- Password1 Field -->
                     <div class="mt-4">
                         <label class="block text-gray-700">Password</label>
-                        <input type="password" name="password1" placeholder="Enter Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                        <input type="password" id="password1" name="password1" placeholder="Enter Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required minlength="8">
+                        <small id="passwordError" class="text-red-500 hidden">Password must be at least 8 characters long</small>
                     </div>
 
                     <!-- Password2 Field -->
                     <div class="mt-4">
                         <label class="block text-gray-700">Confirm Password</label>
-                        <input type="password" name="password2" placeholder="Confirm Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                        <input type="password" id="password2" name="password2" placeholder="Confirm Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required minlength="8">
                     </div>
 
                     <!-- Role Selection Dropdown -->
@@ -73,7 +89,6 @@
                     <hr class="border-gray-500" />
                 </div>
 
-
                 <!-- Redirect to Login -->
                 <div class="text-sm flex justify-between items-center mt-3">
                     <p>Already have an account?</p>
@@ -87,5 +102,28 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function validatePasswords() {
+            const password1 = document.getElementById("password1");
+            const password2 = document.getElementById("password2");
+            const passwordError = document.getElementById("passwordError");
+
+            if (password1.value.length < 8) {
+                passwordError.classList.remove("hidden");
+                password1.focus();
+                return false;
+            } else {
+                passwordError.classList.add("hidden");
+            }
+
+            if (password1.value !== password2.value) {
+                alert("Passwords do not match.");
+                password2.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>

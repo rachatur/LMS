@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions for "{{ assignment_title }}"</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'courses_details/header.html' %}
+<br/><br/>
+
+    <div class="container mt-5">
+        <h2>Questions for "{{ assignment_title }}"</h2>
+
+        <!-- Displaying Uploaded Questions -->
+        <h3 class="mt-4">Uploaded Questions:</h3>
+        <ul class="list-group">
+            {% for question in questions %}
+                <li class="list-group-item">
+                    <strong>{{ question.text }}</strong>
+                    {% if question.subtitle %}
+                        <p class="mb-1"><em>{{ question.subtitle }}</em></p>
+                    {% endif %}
+                    <p>Question Type: {{ question.question_type }}</p>
+                    <p>Answer Type: {{ question.answer_type }}</p>
+                    {% if question.file_upload %}
+                        <div>
+                            <a href="{{ question.file_upload.url }}" target="_blank">View File</a>
+                        </div>
+                    {% endif %}
+                    <form method="POST" action="{% url 'delete_question' question.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No questions uploaded yet.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Button to Go Back or Next -->
+        <div class="mt-4">
+            <a href="{% url 'add_questions' assignment_title=assignment_title %}" class="btn btn-secondary">Add More Questions</a>
+           
+        </div>
+    </div>
+</body>
+</html>

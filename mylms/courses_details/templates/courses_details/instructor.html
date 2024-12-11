@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .instructors-section {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .instructors-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .instructors-section p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .instructor-card {
+            background-color: #d9e5e4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .instructor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .instructor-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .instructor-card p {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    {% include 'courses_details/header.html' %}
+<br/><br/>
+<div class="content">
+    <section class="instructors-section mt-4">
+        <h2>Meet Our Lead Instructors</h2>
+        <p>Our dedicated instructors bring years of experience and expertise to ensure a rich learning experience for our students.</p>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="instructor-card">
+                        <img src="{% static 'assets/instructor_img/instructor-1 1.jpg' %}" alt="Amit Sharma">
+                        <div>
+                            <h3>Amit Sharma</h3>
+                            <p>Amit is the lead instructor for web development. With over 10 years of industry experience, he specializes in front-end technologies like HTML, CSS, and JavaScript, providing hands-on training to students looking to build dynamic websites and apps.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="instructor-card">
+                        <img src="{% static 'assets/instructor_img/instructor-2 1.jpg' %}" alt="Neha Rao">
+                        <div>
+                            <h3>Neha Rao</h3>
+                            <p>Neha leads the data science track and focuses on Python programming, machine learning, and data visualization. Her goal is to help students become proficient in analyzing and interpreting large datasets.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="instructor-card">
+                        <img src="{% static 'assets/instructor_img/instructor-3 1.jpg' %}" alt="Rajesh Patel">
+                        <div>
+                            <h3>Rajesh Patel</h3>
+                            <p>Rajesh is an expert in cloud computing and teaches courses on AWS and Azure. He helps students understand the intricacies of cloud infrastructure and deployment, preparing them for careers in cloud engineering and architecture.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="instructor-card">
+                        <img src="{% static 'assets/instructor_img/instructor-4 1.jpg' %}" alt="Priya Nair">
+                        <div>
+                            <h3>Piyush Nair</h3>
+                            <p>Priya specializes in cybersecurity and ethical hacking. She provides comprehensive training in network security, penetration testing, and threat mitigation, ensuring that students are prepared to defend against cyber threats.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

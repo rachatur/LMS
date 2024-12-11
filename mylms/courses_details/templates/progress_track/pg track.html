@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Progress - Python Programming for Beginners</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Arial', sans-serif;
+        }
+        .course-container {
+            margin-top: 50px;
+        }
+        .course-header {
+            background-color: #007bff;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .progress-header {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        /* Dark grey progress bar */
+        .progress-bar {
+            width: {{ progress_percentage }}%;
+            background-color: #6c757d;
+        }
+        .lessons-list {
+            margin-top: 30px;
+        }
+        .lesson-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            font-size: 1.2rem;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .lesson-status {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        /* Dark grey for completed lessons */
+        .text-completed {
+            color: #6c757d;
+        }
+        .btn-resume {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            margin-top: 30px;
+        }
+        .btn-resume:hover {
+            background-color: #0056b3;
+        }
+        {% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    </style>
+</head>
+<body>
+
+    <div class="container course-container">
+        <!-- Course Header -->
+        <div class="course-header">
+            <h1>Python Programming for Beginners</h1>
+            <h3>Overall Progress: 45% Completed</h3>
+            <div class="progress mt-3">
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
+            </div>
+        </div>
+
+        <!-- Lessons Section -->
+        <div class="lessons-list">
+            <!-- Lesson 1 -->
+            <div class="lesson-item">
+                <div class="lesson-title">Lesson 1: Introduction to Python (Video)</div>
+                <div class="lesson-status text-completed">Watched: 80%</div>
+                <div class="progress mt-2">
+                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                </div>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-item">
+                <div class="lesson-title">Lesson 2: Python Basics (Article)</div>
+                <div class="lesson-status text-completed">Status: Completed</div>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-item">
+                <div class="lesson-title">Lesson 3: Python Variables (Video)</div>
+                <div class="lesson-status text-warning">Watched: 60%</div>
+                <div class="progress mt-2">
+                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                </div>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="lesson-item">
+                <div class="lesson-title">Lesson 4: Data Types in Python (Article)</div>
+                <div class="lesson-status text-danger">Status: Not Completed</div>
+            </div>
+        </div>
+
+        <!-- Resume Button -->
+        <div class="text-center">
+            <a href="#" class="btn btn-resume">Resume Course</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

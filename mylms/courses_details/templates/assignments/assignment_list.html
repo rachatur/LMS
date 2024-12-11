@@ -1,0 +1,51 @@
+<!-- assignment_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Assignment List</title>
+    <style>
+        /* static/css/style.css */
+h3 {
+    margin-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assignments</h1>
+        <a href="{% url 'create_assignment' %}">Create New Assignment</a>
+        <ul>
+            {% for assignment in assignments %}
+                <li>
+                    <h3>{{ assignment.title }}</h3>
+                    <p>Category: {{ assignment.category }}</p>
+                    <p>Description: {{ assignment.description }}</p>
+                    <p>Prerequisites: {{ assignment.prerequisites }}</p>
+                    <p>Due Date: {{ assignment.due_date }}</p>
+                    <a href="{% url 'add_questions' assignment.id %}">Add Questions</a>
+                </li>
+            {% empty %}
+                <li>No assignments available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

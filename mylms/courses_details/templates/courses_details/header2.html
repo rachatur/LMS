@@ -20,15 +20,23 @@
       .navbar {
         z-index: 1030;
         background-color: #fff; /* Navbar background color */
+        margin-bottom: 0; /* Remove any bottom margin */
+        padding-bottom: 0; /* Remove any bottom padding */
       }
-
+ 
+      /* Remove default body margin and padding */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+ 
       /* Content styling */
       .content {
         margin-left: 0; /* Initially no left margin */
         padding: 20px;
         transition: margin-left 0.3s ease; /* Smooth transition */
       }
-
+ 
       /* Dropdown Menu */
       .dropdown-menu {
         display: none;
@@ -40,27 +48,61 @@
         margin: 0;
         border-radius: 4px;
       }
-
+ 
       .dropdown-menu .dropdown-item {
         text-decoration: none;
         color: #333;
         padding: 0.5rem 1rem;
       }
-
+ 
       .dropdown-menu .dropdown-item:hover {
         background-color: #f1f1f1;
       }
-
+ 
       /* Show Dropdown on Hover */
       .nav-item.dropdown:hover .dropdown-menu {
         display: block;
+      }
+ 
+      /* Custom button styles */
+      .btn-logins,
+      .btn-registers {
+        background-color: #007bff; /* Blue background for login */
+        color: white;
+        border-radius: 30px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for a better size */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+        font-size: 0.9rem; /* Adjust font size */
+      }
+ 
+      .btn-registers {
+        background-color: #28a745; /* Green background for register */
+      }
+ 
+      /* Hover effects */
+      .btn-logins:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+ 
+      .btn-registers:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+ 
+      /* Optional focus outline */
+      .btn-logins:focus,
+      .btn-registers:focus {
+        outline: none; /* Remove default outline */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a glow effect */
       }
     </style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-dark fixed-top">
-      <div class="container-fluid d-flex align-items-center">
+    <nav class="navbar navbar-light fixed-top">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
         <!-- Logo on the left -->
         <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">
           <img
@@ -69,29 +111,33 @@
             style="height: 40px;"
           />
         </a>
-
-        <!-- Profile Section aligned to the right -->
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="profileDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i class="fas fa-user"></i>
-            <span class="profile-name">My Profile</span>
+ 
+        <!-- Buttons on the right -->
+        <div class="ml-auto">
+          <a href="{% url 'login' %}" class="btn btn-logins btn-sm mr-2" style="background-color: #007bff; /* Blue background for login */
+        color: white;
+        border-radius: 30px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for a better size */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+        font-size: 0.9rem; /* Adjust font size */ background-color: #383d41; /* Darker green on hover */
+        transform: translateY(-2px); /* Slight lift on hover */">
+            <i class="fas fa-sign-in-alt"></i> Login
           </a>
-          <div class="dropdown-menu" aria-labelledby="profileDropdown">
-            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-<!--            <a class="dropdown-item" href="{% url 'login' %}">Login</a>-->
-          </div>
-        </li>
+          <a href="{% url 'register' %}" class="btn btn-registers btn-sm" style="background-color: #007bff; /* Blue background for login */
+        color: white;
+        border-radius: 30px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for a better size */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+        font-size: 0.9rem; /* Adjust font size */  outline: none; /* Remove default outline */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a glow effect */">
+            <i class="fas fa-user-plus"></i> Register
+          </a>
+        </div>
       </div>
     </nav>
-
+ 
     <!-- Bootstrap and jQuery JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

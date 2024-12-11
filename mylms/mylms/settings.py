@@ -11,21 +11,27 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+CSRF_TRUSTED_ORIGINS = ["https://latestlms-58568937504.us-central1.run.app"]
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(!9qr^&oph3bkcqf8+)3@dh6bcv#rbs=uvu$9_2bs0yyik5!y@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['latestlms-58568937504.us-central1.run.app',
+                 'restapitable.uc.r.appspot.com',
+                 '127.0.0.1',
+                 '192.168.1.41',]
 
 
 # Application definition
@@ -38,7 +44,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'courses_details',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'social_django',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,7 +62,43 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
 ]
+
+if os.getenv("IN_DOCKER") != "true":
+    MIDDLEWARE.append("allauth.account.middleware.AccountMiddleware")
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+                           'allauth.account.auth_backends.AuthenticationBackend', )
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional"  # Or "mandatory" if you require email verification
+SOCIALACCOUNT_EMAIL_VERIFICATION = "optional"
+
+LOGIN_URL = '/accounts/login/'
+
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': '58568937504-p6ekcjf16ck0sfg2l2sqo73gkhv8qhfj.apps.googleusercontent.com',
+#             'secret': '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',
+#             # 'key': ''  # You can leave this blank or remove it if not necessary
+#         },
+#         'SCOPE': ['profile', 'email'],  # Ensure you're capturing 'email' and 'profile' information
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#         'OAUTH_PKCE_ENABLED': True,  # Enables PKCE (Proof Key for Code Exchange)
+#     }
+# }
+
 
 ROOT_URLCONF = 'mylms.urls'
 
@@ -68,12 +118,36 @@ TEMPLATES = [
     },
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'uploads/static')
+
 WSGI_APPLICATION = 'mylms.wsgi.application'
 
+# online lms database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'LMS',  # Name of your MySQL database
+#         'USER': 'root2',  # Your MySQL user
+#         'PASSWORD': '4321',  # Your MySQL user password
+#         'HOST': '104.198.170.43',  # External IP of your MySQL instance from GCP
+#         'PORT': '3306',  # Default MySQL port
+#
+#     }
+# }
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# Personal mysql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'lms',            # Database name
+#         'USER': 'root',             # Database user
+#         'PASSWORD': 'root',     # Database password
+#         'HOST': '127.0.0.1',             # e.g., 'localhost' or '127.0.0.1' for local
+#         'PORT': '3306',                           # MySQL port (default is 3306)
+#     }
+# }
 
+# sqllite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -82,27 +156,20 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -112,15 +179,33 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'courses_details.User'
+
+# docker commands -
+# docker tag mylms gcr.io/smartscanner-428805/mylms
+# docker push gcr.io/smartscanner-428805/mylms
+
+
+# http://127.0.0.1:8000/accounts/google/login/callback/
+# http://localhost:8000/accounts/google/login/callback/
+# https://mylms-58568937504.us-central1.run.app/accounts/google/login/callback/
+# http://127.0.0.1:8000/accounts/google/login/callback/
+
+# domain name - 127.0.0.1/:8000
+# dns name - localhost
+# domain name - mylms-58568937504.us-central1.run.app
+# dns name - Cloud Run
+
+# http://127.0.0.1:8000/accounts/google/login/callback/
+# name - Google API
+# GOOGLE_CLIENT_ID = '58568937504-p6ekcjf16ck0sfg2l2sqo73gkhv8qhfj.apps.googleusercontent.com'
+# GOOGLE_CLIENT_SECRET = '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'
+# GOOGLE_REDIRECT_URI = 'http://localhost:8000/oauth2callback'

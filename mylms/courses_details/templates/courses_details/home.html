@@ -18,60 +18,59 @@
             padding: 0; /* Remove padding for the header */
         }
         .banner {
-            position: relative;
-            background-image: url('{% static "assets/banner.png" %}');
+            display: flex;
+            flex-direction: column; /* Stack items on small screens */
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+            height: 100vh; /* Full viewport height */
+            background-image: url('{% static "assets/banner2.webp" %}');
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            position: relative;
+            padding: 0 20px; /* Reduced padding for smaller screens */
         }
         .banner-content {
             position: relative;
             z-index: 2;
             padding: 20px;
-            width: 100%;
+            text-align: center; /* Center the text */
+            color: Black;
+            margin-left: 25rem;
+        }
+        .highlight {
+            color: #FFD700; /* Highlight color for the success span */
         }
         @media (max-width: 768px) {
-            .banner-content h1 {
-                font-size: 2rem;
+            .banner-content h2 {
+                font-size: 1.5rem; /* Smaller font size for h2 on mobile */
+            }
+            .banner-content h3 {
+                font-size: 1.2rem; /* Adjust h3 size for mobile */
+            }
+            .banner-content p {
+                font-size: 0.9rem; /* Adjust paragraph size for mobile */
+            }
+            .banner {
+                padding: 0 10px; /* Further reduce padding on mobile */
             }
         }
     </style>
 </head>
 <body>
 
-    {% include 'courses_details/header.html' %}
+    {% include 'courses_details/header2.html' %}
 
     <!-- Banner Section -->
     <div class="banner">
         <div class="overlay"></div>
-        <div class="banner-content">
-            <h1 class="display-4">Build The Skills To Drive Your Career.</h1>
-            <h3>Education Opens Up The Mind</h3>
-            <p style="font-weight:bold">Join us to explore a variety of courses that enhance your knowledge and skills.</p>
-            <p class="lead">
-                Whether you're looking to advance in your current job or switch careers, we have the resources to help you succeed.
-            </p>
+        <div class="banner-content mr-4">
+            <h3 class="display-4" style="font-size: 2.5rem;font-weight: bold;
+    line-height: 1.2;">Build The Skills To Drive Your Career.</h3>
+            <h4>The LMS<br><span class="highlight">built for success</span></h4>
+            <p>Build a smarter organization with the training platform designed to help great teams grow.</p>
             <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button" aria-label="View available courses">View Courses</a>
         </div>
     </div>
-
-   
 
     <div class="content">
         {% block content %}

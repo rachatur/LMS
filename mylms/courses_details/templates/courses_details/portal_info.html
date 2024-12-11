@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        /* Style for the original header nav */
+        nav.header-nav {
+            background-color: #343A40;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            position: relative;
+            z-index: 5;
+        }
+        nav.header-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        nav.header-nav a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        /* New navbar under the header */
+        nav.sub-nav {
+            background-color: #333333;
+            display: flex;
+            justify-content: space-around;
+            padding: 13px 0;
+            margin-top: 26px; /* Adds space between header and the new nav */
+        }
+
+        nav.sub-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav.sub-nav a:hover {
+            background-color: #007BFF;
+        }
+
+        .container {
+            padding: 20px;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f3f4f6;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #343A40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include the header from the header.html file -->
+    {% include 'courses_details/header.html' %}
+
+    <br /><br />
+    <div class="content">
+<div class="container">
+    <!-- New Navigation Bar Under Header -->
+    <nav class="sub-nav">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <section id="overview" class="card">
+            <h2>Overview</h2>
+            <p>Welcome to Learning Management System (LMS). A one-stop solution for seamless learning experiences. Whether you're a student, educator, or administrator, our LMS is designed to make your academic journey efficient and enjoyable.</p>
+        </section>
+
+        <section id="features" class="card">
+            <h2>Features</h2>
+            <ul>
+                <li>Personalized learning paths</li>
+                <li>Easy assignment and grade management</li>
+                <li>Interactive content delivery</li>
+            </ul>
+        </section>
+
+        <section id="resources" class="card">
+            <h2>Resources</h2>
+            <p>Access a wide range of learning materials, including:</p>
+            <ul>
+                <li>Video tutorials</li>
+                <li>Quizzes and assessments</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="card">
+            <h2>Contact Us</h2>
+            <p>For support or inquiries, reach out to us:</p>
+            <p>Email: ethxsupport@lms.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+        </section>
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>

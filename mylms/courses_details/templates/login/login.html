@@ -1,52 +1,80 @@
 <!DOCTYPE html>
+{% load socialaccount %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-200 flex items-center justify-center min-h-screen">
-    <section class="flex bg-gray-200 min-h-screen my-3" >
-        <div class="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl ">
+    <section class="flex bg-gray-200 min-h-screen my-3">
+        <div class="bg-gray-100 p-5 flex rounded-2xl shadow-lg max-w-3xl">
             <!-- Left section: form -->
             <div class="md:w-1/2 px-5">
                 <h2 class="text-2xl font-bold text-[#002D74]">Login</h2>
-                <p class="text-sm mt-4 text-[#002D74]">If you have an account, please login</p>
-                <form class="mt-6" method="POST">
+
+                <!-- Display messages -->
+                {% if messages %}
+                    <div class="mb-4">
+                        {% for message in messages %}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                                <span class="block sm:inline">{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Login with Google -->
+                <a href="/accounts/google/login/" style="width: 100%;">
+                    <div class="mt-4 my-2 p-2 bg-white border rounded-lg shadow-md text-center cursor-pointer">
+                        <span class="inline-block">
+                            Login With <img src="https://img.icons8.com/color/30/000000/google-logo.png" class="inline-block ml-2"/>
+                        </span>
+                    </div>
+                </a>
+
+                <p class="text-sm mt-4 text-[#002D74]">Login using your credentials</p>
+
+                <!-- Login form -->
+                <form method="POST" class="mt-6 space-y-4">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
+
                     <div>
-                        <label class="block text-gray-700">Username</label>
-                        <input type="text" name="username" placeholder="Enter Username" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                        <label for="username" class="block text-gray-700">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter your username" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                        {{ form.username.errors }}
                     </div>
 
-                    <div class="mt-4">
-                        <label class="block text-gray-700">Password</label>
-                        <input type="password" name="password" placeholder="Enter Password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                    <div>
+                        <label for="password" class="block text-gray-700">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter your password" class="w-full px-4 py-2 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none" required>
+                        {{ form.password.errors }}
                     </div>
 
-                    <div class="text-right mt-2">
-                        <a href="{% url 'password_reset' %}" class="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">Forgot Password?</a>
+                    <div class="text-right">
+                        <a href="{% url 'password_reset' %}" class="text-sm text-blue-700 hover:underline">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="w-full block bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">
+                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">
                         Log In
                     </button>
                 </form>
 
+                <!-- Separator -->
                 <div class="mt-7 grid grid-cols-3 items-center text-gray-500">
                     <hr class="border-gray-500" />
                     <p class="text-center text-sm">OR</p>
                     <hr class="border-gray-500" />
                 </div>
 
-
+                <!-- Redirect to Register -->
                 <div class="text-sm flex justify-between items-center mt-3">
-                    <p>If you don't have an account...</p>
-                    <a href="{% url 'register' %}" class="py-2 px-5 ml-3 bg-white border rounded-xl hover:scale-110 duration-300 border-blue-400">
-                        Register
-                    </a>
+                    <p>Don't have an account?</p>
+                    <a href="{% url 'register' %}" class="py-2 px-5 ml-3 bg-white border rounded-xl hover:scale-110 duration-300 border-blue-400">Register</a>
                 </div>
             </div>
 
