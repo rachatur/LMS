@@ -531,3 +531,5 @@ def vimeo_video_view(request):
 
 def portal_info(request):
     return render(request, 'courses_details/portal_info.html')
+
+# Git comment
