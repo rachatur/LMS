@@ -533,3 +533,4 @@ def portal_info(request):
     return render(request, 'courses_details/portal_info.html')
 
 # Git comment
+# git commit 2
